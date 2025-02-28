@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen bg-gray-100 p-4">
 
-  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg md:max-w-lg lg:max-w-xl">
     <h2 class="text-center text-2xl font-bold text-green-500">Kasiglahan Annex Library</h2>
 
     <div role="tablist" class="tabs tabs-boxed mt-4">
@@ -51,7 +51,12 @@
     </form>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function showForm(type) {
+      document.getElementById("loginForm").classList.toggle("hidden", type !== "login");
+      document.getElementById("registerForm").classList.toggle("hidden", type !== "register");
+    }
+  </script>
 
 </body>
 </html>
