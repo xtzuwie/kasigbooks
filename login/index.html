@@ -6,52 +6,52 @@
   <title>Kasiglahan Library</title>
   <link rel="icon" href="assets/logo.jpg" type="image/x-icon" />
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col items-center justify-center h-screen bg-gray-100 p-4 text-center">
+<body class="flex items-center justify-center min-h-screen">
 
-  <!-- Massive Typography Section -->
-  <div class="mb-8">
-    <h1 class="text-6xl font-bold bg-gradient-to-r from-red-500 to-green-500 text-transparent bg-clip-text">
-      Kasiglahan Annex Library
-    </h1>
-    <h2 class="text-2xl text-gray-700 mt-2">Search Books Accordingly</h2>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-center text-2xl font-bold text-green-500">Kasiglahan Annex Library</h2>
+
+    <div role="tablist" class="tabs tabs-boxed mt-4">
+      <a role="tab" class="tab tab-active" onclick="showForm('login')">Login</a> 
+      <a role="tab" class="tab" onclick="showForm('register')">Register</a>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="mt-4 space-y-4">
+      <div>
+        <label class="block text-gray-700">Email</label>
+        <input type="email" placeholder="Enter your email" class="input input-bordered w-full" required>
+      </div>
+      <div>
+        <label class="block text-gray-700">Password</label>
+        <input type="password" placeholder="Enter your password" class="input input-bordered w-full" required>
+      </div>
+      <button class="btn btn-success w-full">Login</button>
+    </form>
+
+    <!-- Registration Form -->
+    <form id="registerForm" class="mt-4 space-y-4 hidden">
+      <div>
+        <label class="block text-gray-700">Full Name</label>
+        <input type="text" placeholder="Enter your full name" class="input input-bordered w-full" required>
+      </div>
+      <div>
+        <label class="block text-gray-700">Email</label>
+        <input type="email" placeholder="Enter your email" class="input input-bordered w-full" required>
+      </div>
+      <div>
+        <label class="block text-gray-700">Password</label>
+        <input type="password" placeholder="Create a password" class="input input-bordered w-full" required>
+      </div>
+      <button class="btn btn-primary w-full">Register</button>
+    </form>
   </div>
 
-  <div class="card mx-auto">
-    <div class="loader">
-      <p>loading books</p>
-      <div class="words">
-        <span class="word">english</span>
-        <span class="word">novels</span>
-        <span class="word">literature</span>
-        <span class="word">mathematics</span>
-        <span class="word">history</span>
-      </div>
-    </div>
-  </div>
+  <script src="script.js"></script>
 
-  <form class="flex items-center max-w-lg mx-auto mb-28">
-    <label class="sr-only" for="voice-search">Search</label>
-    <div class="relative w-full">
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-          <path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z" />
-        </svg>          
-      </div>
-      <input required placeholder="Search Books" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" id="voice-search" type="text" />
-      <button class="absolute inset-y-0 end-0 flex items-center pe-3" type="button">
-        <svg viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-4 text-gray-500">
-          <path d="M15 7v3a5.006 5.006 0 0 1-5 5H6a5.006 5.006 0 0 1-5-5V7m7 9v3m-3 0h6M7 1h2a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3Z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor"></path>
-        </svg>
-      </button>
-    </div>
-    <button class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300" type="submit">
-      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-4 me-2">
-        <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor"></path>
-      </svg>
-    </button>
-  </form>
 </body>
 </html>
