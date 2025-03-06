@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kasiglahan Library</title>
-  <link rel="icon" href="assets/logo.jpg" type="image/x-icon" />
+  <link rel="icon" href="assets/logo.jpg" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100 p-4 pb-16">
 
-  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg md:max-w-lg lg:max-w-xl">
+<body class="flex items-center justify-center min-h-screen bg-gray-100 p-4 pb-16">
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
     <h2 class="text-center text-2xl font-bold text-green-500">Kasiglahan Annex Library</h2>
 
+    <!-- Tabs -->
     <div role="tablist" class="tabs tabs-boxed mt-4">
       <a role="tab" class="tab tab-active" onclick="showForm('login')">Login</a> 
       <a role="tab" class="tab" onclick="showForm('register')">Register</a>
@@ -24,53 +25,135 @@
     <form id="loginForm" class="mt-4 space-y-4">
       <div>
         <label class="block text-gray-700">Email</label>
-        <input type="email" placeholder="Enter your email" class="input input-bordered w-full" required>
+        <input type="email" id="loginEmail" placeholder="Enter your email" class="input input-bordered w-full" required>
       </div>
       <div>
         <label class="block text-gray-700">Password</label>
-        <input type="password" placeholder="Enter your password" class="input input-bordered w-full" required>
+        <input type="password" id="loginPassword" placeholder="Enter your password" class="input input-bordered w-full" required>
       </div>
-      <button class="btn btn-success w-full">Login</button>
+      <p id="loginError" class="text-red-500 text-sm hidden"></p>
+      <button type="submit" class="btn btn-success w-full">Login</button>
+      <p class="text-sm text-blue-500 cursor-pointer mt-2 text-center" onclick="showForm('forgot')">Forgot Password?</p>
     </form>
 
     <!-- Registration Form -->
     <form id="registerForm" class="mt-4 space-y-4 hidden">
       <div>
-        <label class="block text-gray-700">Full Name</label>
-        <input type="text" placeholder="Enter your full name" class="input input-bordered w-full" required>
+        <label class="block text-gray-700">Library ID</label>
+        <input type="text" id="libraryID" placeholder="K-M-MD-B" class="input input-bordered w-full" required>
       </div>
       <div>
         <label class="block text-gray-700">Email</label>
-        <input type="email" placeholder="Enter your email" class="input input-bordered w-full" required>
+        <input type="email" id="registerEmail" placeholder="Enter your email" class="input input-bordered w-full" required>
       </div>
       <div>
         <label class="block text-gray-700">Password</label>
-        <input type="password" placeholder="Create a password" class="input input-bordered w-full" required>
+        <input type="password" id="registerPassword" placeholder="Create a password" class="input input-bordered w-full" required>
       </div>
-      <button class="btn btn-primary w-full">Register</button>
+      <p id="registerError" class="text-red-500 text-sm hidden"></p>
+      <button type="submit" class="btn btn-accent w-full">Register</button>
+    </form>
+
+    <!-- Forgot Password Form -->
+    <form id="forgotPasswordForm" class="mt-4 space-y-4 hidden">
+      <div>
+        <label class="block text-gray-700">Enter your email to reset password</label>
+        <input type="email" id="resetEmail" placeholder="Enter your email" class="input input-bordered w-full" required>
+      </div>
+      <p id="resetError" class="text-red-500 text-sm hidden"></p>
+      <p id="resetSuccess" class="text-green-500 text-sm hidden"></p>
+      <button type="submit" class="btn btn-warning w-full">Reset Password</button>
+      <p class="text-sm text-blue-500 cursor-pointer mt-2 text-center" onclick="showForm('login')">Back to Login</p>
     </form>
   </div>
 
-  <footer class="footer footer-center p-4 bg-transparent-100 text-base-content fixed bottom-0 w-full">
+  <!-- Footer -->
+  <footer class="footer footer-center p-4 bg-transparent text-base-content fixed bottom-0 w-full">
     <aside>
-      <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-          <path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z" />
-        </svg>        
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p>Copyright © 2025 - Kasiglahan Library. All rights reserved.</p>
-      </div>
-    <body class="flex items-center justify-center min-h-screen bg-gray-100 p-4 pb-16">    </aside>
+      <p>Copyright © 2025 - Kasiglahan Library. All rights reserved.</p>
+    </aside>
   </footer>
 
-  <script>
-    function showForm(type) {
-      document.getElementById("loginForm").classList.toggle("hidden", type !== "login");
-      document.getElementById("registerForm").classList.toggle("hidden", type !== "register");
-    }
+  <!-- Firebase Authentication Script -->
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCos7bb35LNSUyB4fV9AfsPTS6KOucMg4g",
+      authDomain: "kasiglahanlib.firebaseapp.com",
+      projectId: "kasiglahanlib",
+      storageBucket: "kasiglahanlib.appspot.com",
+      messagingSenderId: "913280719189",
+      appId: "1:913280719189:web:fa46146c493ef2bd53b7dc",
+      measurementId: "G-64WBLLZ1F6"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Login User
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const errorMessage = document.getElementById('loginError');
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = './dashboard/mainboard.html';
+      } catch (error) {
+        errorMessage.textContent = error.message.replace('Firebase: ', '');
+        errorMessage.classList.remove('hidden');
+      }
+    });
+
+    // Register User
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      const errorMessage = document.getElementById('registerError');
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration Successful!");
+        document.getElementById('registerForm').reset();
+        showForm('login'); // Switch to login form
+      } catch (error) {
+        errorMessage.textContent = error.message.replace('Firebase: ', '');
+        errorMessage.classList.remove('hidden');
+      }
+    });
+
+    // Forgot Password
+    document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('resetEmail').value;
+      const successMessage = document.getElementById('resetSuccess');
+      const errorMessage = document.getElementById('resetError');
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        successMessage.textContent = "Password reset link sent to your email!";
+        successMessage.classList.remove('hidden');
+        errorMessage.classList.add('hidden');
+      } catch (error) {
+        errorMessage.textContent = error.message.replace('Firebase: ', '');
+        errorMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+      }
+    });
+
+    // Show Login/Register/Forgot Password Form
+    window.showForm = (form) => {
+      document.getElementById("loginForm").classList.toggle("hidden", form !== "login");
+      document.getElementById("registerForm").classList.toggle("hidden", form !== "register");
+      document.getElementById("forgotPasswordForm").classList.toggle("hidden", form !== "forgot");
+    };
   </script>
 
 </body>
