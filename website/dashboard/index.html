@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../assets/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Responsive Sidebar and Navs -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 class="site-title">Kasiglahan Annex Library</h1>
+            <button class="toggle-sidebar" aria-label="Toggle Menu">
+                <i class="fa-solid fa-sliders"></i>
+            </button>
+            </div>
+        <nav class="sidebar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="mainboard.htm;" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="books.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        <span>Books</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-header mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="user-name">Dashboard ~</h1>
+                    <p class="user-email-header text-muted mb-0">Loading...</p>    <!-- Based on User Email Logged In -->
+                </div>
+                <div class="d-flex gap-3">
+                    <div class="dropdown">  
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-2"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="./profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger logout-btn" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Replace the existing profile-card-section div -->
+<div class="profile-card-section">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="notebook-container">
+            <!-- Pen design -->
+            <div class="pen">
+                <div class="pen-body">
+                    <div class="pen-tip"></div>
+                    <div class="pen-clip"></div>
+                </div>
+            </div>
+
+            <!-- Notebook design -->
+            <div class="notebook">
+                <!-- Spiral binding -->
+                <div class="binding">
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                    <div class="spiral"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="notebook-content">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <h2 class="notebook-title">Kasiglahan Library</h2>
+                        <i class="fas fa-book book-icon"></i>
+                    </div>
+
+                    <div class="user-info mb-3">
+                        <p class="info-label">User ID:</p>
+                        <p class="user-uid info-value">Loading...</p>
+                        
+                        <p class="info-label">Email:</p>
+                        <p class="user-email info-value">Loading...</p>
+                    </div>
+
+                    <div class="member-info">
+                        <small class="info-label">MEMBER SINCE</small>
+                        <span class="member-since info-value">2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer footer-center p-4 bg-transparent text-base-content fixed bottom-0 w-full">
+    <aside>
+      <p>Copyright © 2025 - Kasiglahan Library. All rights reserved.</p>
+    </aside>
+  </footer>
+
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { startSessionTimeout, setupAutoReset } from "../backend/sessionTimeout.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCos7bb35LNSUyB4fV9AfsPTS6KOucMg4g",
+    authDomain: "kasiglahanlib.firebaseapp.com",
+    projectId: "kasiglahanlib",
+    storageBucket: "kasiglahanlib.appspot.com",
+    messagingSenderId: "913280719189",
+    appId: "1:913280719189:web:fa46146c493ef2bd53b7dc",
+    measurementId: "G-64WBLLZ1F6"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Display user info
+      document.querySelector('.user-email-header').textContent = user.email;
+      document.querySelector('.user-email').textContent = user.email;
+      document.querySelector('.user-uid').textContent = user.uid;
+
+      // Start session timeout logic
+      startSessionTimeout(auth);
+      setupAutoReset(auth);
+    } else {
+      // If no user is signed in, redirect to login
+      window.location.href = "../login/index.html";
+    }
+  });
+
+  // Logout handler
+  document.querySelector(".logout-btn").addEventListener("click", (e) => {
+    e.preventDefault();
+    auth.signOut().then(() => {
+      window.location.href = "../login/index.html";
+    });
+  });
+  </script>
+    
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="../backend/firebase/firebase.nav.js"></script>
+    <script type="module" src="../backend/firebase/sessionTimeout.js"></script>
+ 
+ </body>
+ </html>
